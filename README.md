@@ -6,7 +6,7 @@ An A* Pathfinding implementation written in GO and set up for [DigitalOcean Func
 
 ## Deployment and Testing
 
-First, install `doctl` and install Serverless Functions support
+First, [Install `doctl` and install Serverless Functions support](https://docs.digitalocean.com/reference/doctl/how-to/install/)
 
 
 To deploy this project run
