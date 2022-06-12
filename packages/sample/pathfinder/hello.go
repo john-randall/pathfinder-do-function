@@ -1,13 +1,9 @@
 package main
 
-import (
-	"strconv"
-)
-
 type Request struct {
-	Start Position   `json:"start"`
-	End   Position   `json:"end"`
-	Grid  [][]string `json:"grid"`
+	Start []int   `json:"start"`
+	End   []int   `json:"end"`
+	Grid  [][]int `json:"grid"`
 }
 
 type Response struct {
@@ -17,8 +13,7 @@ type Response struct {
 }
 
 type Body struct {
-	// Grid [][]string `json:"grid,omitempty"`
-	Path []string `json:"path"`
+	Path [][]int `json:"path"`
 }
 
 type Position struct {
@@ -37,8 +32,8 @@ type Node struct {
 func Main(in Request) (*Response, error) {
 
 	g := in.Grid
-	start := in.Start
-	end := in.End
+	start := Position{in.Start[0], in.Start[1]}
+	end := Position{in.End[0], in.End[1]}
 
 	return &Response{
 		Body: Body{
@@ -47,7 +42,7 @@ func Main(in Request) (*Response, error) {
 	}, nil
 }
 
-func FindPath(start Position, end Position, g [][]string) []string {
+func FindPath(start Position, end Position, g [][]int) [][]int {
 
 	numRows := len(g)
 	numCols := len(g[0])
@@ -74,12 +69,12 @@ func FindPath(start Position, end Position, g [][]string) []string {
 		closedList = append(closedList, currentNode)
 
 		if currentNode.position.X == endNode.position.X && currentNode.position.Y == endNode.position.Y {
-			path := []string{}
+			path := [][]int{}
 			current := &currentNode
 
 			for current != nil {
-				step := "(" + strconv.Itoa(current.position.X) + ", " + strconv.Itoa(current.position.Y) + ")"
-				path = append([]string{step}, path...)
+				step := []int{current.position.X, current.position.Y}
+				path = append([][]int{step}, path...)
 				current = current.parent
 			}
 
@@ -96,7 +91,7 @@ func FindPath(start Position, end Position, g [][]string) []string {
 				continue
 			}
 
-			if g[nodePosition.X][nodePosition.Y] != "0" {
+			if g[nodePosition.X][nodePosition.Y] != 0 {
 				continue
 			}
 

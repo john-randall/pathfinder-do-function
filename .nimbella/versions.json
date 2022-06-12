@@ -5,8 +5,8 @@
     "packageVersions": {},
     "actionVersions": {
       "sample/pathfinder": {
-        "digest": "dd706141d1abfd97466afce0494f0070fce1eb7076976005a6482300508d93a7",
-        "version": "0.0.2"
+        "digest": "64d4b2ff84dd452ce62a05e631aea0284f396cb74495548379eeb8572ce89e0d",
+        "version": "0.0.3"
       }
     },
     "webHashes": {}
